@@ -119,7 +119,7 @@
                 android:id="@+id/tvCardTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ĐỒ"
+                android:text="₫0"
                 android:textSize="18sp"
                 android:textColor="#00B89C"
                 android:textStyle="bold"
@@ -130,13 +130,22 @@
                 android:id="@+id/tvCardSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Số tiền hiện có trong tài khoản"
-                android:textSize="14sp"
-                android:textColor="#333333"
                 android:layout_marginTop="4dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvCardTitle"
+                android:text="Bạn chi tiêu đúng kế hoạch "
+                android:textColor="#333333"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardTitle" />
+            <TextView
+                android:id="@+id/tvPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kế hoạch"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardSubtitle"
                 app:layout_constraintStart_toStartOf="parent" />
-
             <TextView
                 android:id="@+id/tvBalance"
                 android:layout_width="wrap_content"
@@ -148,7 +157,27 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/tvCardSubtitle"
                 app:layout_constraintStart_toStartOf="parent" />
-
+            <TextView
+                android:id="@+id/tvTotalBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng số dư"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvBalance"
+                app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/tvSurplus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₫100,000,000"
+                android:textSize="18sp"
+                android:textColor="#FFC107"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalBalance"
+                app:layout_constraintStart_toStartOf="parent" />
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
                 android:layout_width="120dp"
@@ -235,12 +264,13 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
+        android:background="#FFFFFF"
+        app:itemIconSize="24dp"
         app:itemIconTint="#666666"
         app:itemTextColor="#666666"
-        app:itemIconSize="24dp"
-        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
