@@ -1,22 +1,18 @@
 package com.example.giaodien;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment; // Thêm import này
 import androidx.viewpager2.widget.ViewPager2;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,23 +23,21 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Xử lý WindowInsets để tránh che khuất giao diện
+        // Xử lý WindowInsets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Khởi tạo TabLayout và ViewPager2
+        // Thiết lập TabLayout và ViewPager2
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
 
         if (tabLayout != null && viewPager != null) {
-            // Thiết lập adapter
             ViewPagerAdapter adapter = new ViewPagerAdapter(this);
             viewPager.setAdapter(adapter);
 
-            // Kết nối TabLayout với ViewPager2
             new TabLayoutMediator(tabLayout, viewPager,
                     (tab, position) -> {
                         switch (position) {
@@ -61,20 +55,15 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                     }).attach();
-        } else {
-            android.util.Log.e("MainActivity", "tabLayout hoặc viewPager không tồn tại trong layout");
         }
 
-        // Khởi tạo PieChart
+        // Thiết lập PieChart
         PieChart pieChart = findViewById(R.id.pieChart);
         if (pieChart != null) {
             setupPieChart(pieChart);
-        } else {
-            android.util.Log.e("MainActivity", "pieChart không tồn tại trong layout");
         }
     }
 
-    // Hàm thiết lập PieChart
     private void setupPieChart(PieChart pieChart) {
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(30f, "Chi tiêu"));
@@ -82,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         entries.add(new PieEntry(30f, "Mượn nợ"));
 
         PieDataSet dataSet = new PieDataSet(entries, "Phân bổ tài chính");
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setColors(new int[]{0xFF00B89C, 0xFFFFC107, 0xFF666666}); // Màu phù hợp với giao diện
+        dataSet.setValueTextColor(0xFF333333);
         dataSet.setValueTextSize(12f);
 
         PieData pieData = new PieData(dataSet);
@@ -95,16 +84,16 @@ public class MainActivity extends AppCompatActivity {
         pieChart.invalidate();
     }
 
-    // Adapter tùy chỉnh cho ViewPager
-    public static class ViewPagerAdapter extends FragmentStateAdapter {
-        private static final int SO_LUONG_TAB = 4;
+    // Adapter cho ViewPager (giả định các Fragment đã được tạo)
+    public static class ViewPagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
+        private static final int NUM_TABS = 4;
 
         public ViewPagerAdapter(AppCompatActivity activity) {
             super(activity);
         }
 
         @Override
-        public Fragment createFragment(int position) {
+        public androidx.fragment.app.Fragment createFragment(int position) {
             switch (position) {
                 case 0:
                     return new ChiTieuFragment();
@@ -121,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return SO_LUONG_TAB;
+            return NUM_TABS;
         }
     }
 }
