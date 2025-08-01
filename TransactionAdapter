@@ -1,0 +1,56 @@
+package com.example.b3_se07102;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
+
+    private ArrayList<Transaction> transactionList;
+
+    public TransactionAdapter(ArrayList<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    @NonNull
+    @Override
+    public TransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_transaction, parent, false);
+        return new TransactionViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
+        Transaction transaction = transactionList.get(position);
+        holder.tvName.setText(transaction.getName());
+
+        String type = transaction.isIncome() ? "Thu nhập" : "Chi tiêu";
+        String amountText = (transaction.isIncome() ? "+" : "-") + transaction.getAmount() + " đ";
+        holder.tvAmount.setText(amountText + " (" + type + ")");
+
+        int color = transaction.isIncome() ? 0xFF388E3C : 0xFFD32F2F;
+        holder.tvAmount.setTextColor(color);
+    }
+
+    @Override
+    public int getItemCount() {
+        return transactionList.size();
+    }
+
+    public static class TransactionViewHolder extends RecyclerView.ViewHolder {
+        TextView tvName, tvAmount;
+
+        public TransactionViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvAmount = itemView.findViewById(R.id.tvAmount);
+        }
+    }
+}
