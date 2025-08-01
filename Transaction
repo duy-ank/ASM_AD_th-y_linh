@@ -1,0 +1,25 @@
+package com.example.b3_se07102;
+
+public class Transaction {
+    private String name;
+    private int amount;
+    private boolean isIncome;
+
+    public Transaction(String name, int amount, boolean isIncome) {
+        this.name = name;
+        this.amount = amount;
+        this.isIncome = isIncome;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public boolean isIncome() {
+        return isIncome;
+    }
+}
