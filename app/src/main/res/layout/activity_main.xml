@@ -8,8 +8,7 @@
     android:background="#EDF8F5"
     tools:context=".MainActivity">
 
-
-<!-- Header Layout -->
+    <!-- Header Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -19,6 +18,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lịch sử"
+            android:textColor="#00B89C"
+            app:backgroundTint="#EDF8F5"
+            app:cornerRadius="16dp"
+            app:strokeColor="#00B89C"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toEndOf="@id/tvDate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"/>
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
@@ -29,26 +42,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/icSearch"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_search"
-            app:layout_constraintEnd_toStartOf="@+id/icNotification"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="16dp" />
-
-        <ImageView
-            android:id="@+id/icNotification"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_notification"
-            app:layout_constraintEnd_toStartOf="@+id/tvUserAvatar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="16dp" />
 
         <TextView
             android:id="@+id/tvUserAvatar"
@@ -98,6 +91,7 @@
             android:layout_height="wrap_content"
             android:text="Tài sản" />
     </com.google.android.material.tabs.TabLayout>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
@@ -106,6 +100,7 @@
         app:layout_constraintBottom_toTopOf="@+id/spendingCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/spendingCard"
         android:layout_width="match_parent"
@@ -138,11 +133,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Bạn chi tiêu đúng kế hoạch "
+                android:text="Bạn chi tiêu đúng kế hoạch"
                 android:textColor="#333333"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCardTitle" />
+
             <TextView
                 android:id="@+id/tvPlan"
                 android:layout_width="wrap_content"
@@ -153,6 +149,7 @@
                 android:layout_marginTop="2dp"
                 app:layout_constraintTop_toBottomOf="@+id/tvCardSubtitle"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/tvBalance"
                 android:layout_width="wrap_content"
@@ -164,6 +161,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/tvCardSubtitle"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/tvTotalBalance"
                 android:layout_width="wrap_content"
@@ -174,6 +172,7 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintTop_toBottomOf="@+id/tvBalance"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <TextView
                 android:id="@+id/tvSurplus"
                 android:layout_width="wrap_content"
@@ -185,6 +184,7 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintTop_toBottomOf="@+id/tvTotalBalance"
                 app:layout_constraintStart_toStartOf="parent" />
+
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
                 android:layout_width="120dp"
@@ -210,47 +210,46 @@
         android:id="@+id/emptyStateLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/spendingCard"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddTransaction"
-        android:layout_marginTop="32dp"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddTransaction">
 
         <ImageView
             android:id="@+id/imgWallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_wallet"
+            app:layout_constraintBottom_toTopOf="@+id/tvEmptyState"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tvEmptyState"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <ImageView
             android:id="@+id/imgBee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="-40dp"
+            android:layout_marginBottom="-20dp"
             android:src="@drawable/ic_bee"
             app:layout_constraintBottom_toTopOf="@+id/imgWallet"
-            app:layout_constraintEnd_toStartOf="@+id/imgWallet"
-            android:layout_marginEnd="-40dp"
-            android:layout_marginBottom="-20dp" />
+            app:layout_constraintEnd_toStartOf="@+id/imgWallet" />
 
         <TextView
             android:id="@+id/tvEmptyState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tháng này (07/2025) bạn chưa có ghi chép nào."
-            android:textSize="16sp"
-            android:textColor="#666666"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/imgWallet"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="Tháng này (07/2025) bạn chưa có ghi chép nào."
+            android:textColor="#666666"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgWallet" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddTransaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -277,7 +276,6 @@
         app:itemTextColor="#666666"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

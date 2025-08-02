@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">giaodien</string>
+    <string name="title_activity_add_expense">AddExpenseActivity</string>
+    <string name="add_expense">Chi tiêu</string>
+    <string name="enter_amount">Nhập số tiền</string>
+    <string name="select_category">Chọn danh mục</string>
+    <string name="category_food">Ăn uống</string>
+    <string name="enter_description">Nhập mô tả</string>
+    <string name="payment_method">Phương thức thanh toán</string>
+    <string name="cash">Tiền mặt</string>
+    <string name="card">Thẻ</string>
+    <string name="save">LƯU</string>
+    <string name="date_time_placeholder">--/--/---- --:--</string>
+    <string name="description_hint">Nhập mô tả (nếu có)</string>
 </resources>

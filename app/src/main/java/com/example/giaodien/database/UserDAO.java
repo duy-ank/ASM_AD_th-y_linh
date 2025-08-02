@@ -47,7 +47,7 @@ public class UserDAO {
         Cursor cursor = db.query(
                 DatabaseHelper.TABLE_USERS,
                 new String[]{
-                        DatabaseHelper.COLUMN_ID,
+                        DatabaseHelper.COLUMN_USER_ID,
                         DatabaseHelper.COLUMN_EMAIL,
                         DatabaseHelper.COLUMN_PASSWORD_HASH,
                         DatabaseHelper.COLUMN_FULL_NAME
@@ -94,7 +94,7 @@ public class UserDAO {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(
                 DatabaseHelper.TABLE_USERS,
-                new String[]{DatabaseHelper.COLUMN_ID},
+                new String[]{DatabaseHelper.COLUMN_USER_ID},
                 DatabaseHelper.COLUMN_EMAIL + " = ?",
                 new String[]{email},
                 null, null, null

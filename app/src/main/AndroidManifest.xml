@@ -12,14 +12,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Giaodien"
         tools:targetApi="31">
+
+        <!-- LoginActivity là màn hình khởi động -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Login"
+            android:theme="@style/Theme.Giaodien">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Giaodien" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true"
+            android:label="Register"
+            android:theme="@style/Theme.Giaodien" />
+
+        <activity
+            android:name=".AddExpenseActivity"
+            android:exported="false"
+            android:label="Add Expense"
+            android:theme="@style/Theme.Giaodien" />
+        <activity
+            android:name=".ExpenseHistoryActivity"
+            android:label="Lịch sử chi tiêu"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
     </application>
 

@@ -1,0 +1,16 @@
+<resources>
+    <string-array name="expense_categories">
+        <item>Thức ăn</item>
+        <item>Di chuyển</item>
+        <item>Giải trí</item>
+        <item>Mua sắm</item>
+        <item>Hóa đơn</item>
+    </string-array>
+
+    <string-array name="payment_methods">
+        <item>Tiền mặt</item>
+        <item>Thẻ ngân hàng</item>
+        <item>Ví điện tử</item>
+        <item>Chuyển khoản</item>
+    </string-array>
+</resources>
