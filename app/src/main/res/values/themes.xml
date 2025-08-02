@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Giaodien" parent="Theme.Material3.DayNight.NoActionBar">
@@ -6,4 +7,10 @@
     </style>
 
     <style name="Theme.Giaodien" parent="Base.Theme.Giaodien" />
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ExpenseManagement" parent="android:Theme.Material.Light.NoActionBar" />
+>>>>>>> 61caeb2 (Initial commit)
 </resources>

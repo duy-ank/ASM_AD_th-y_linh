@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <color name="primary_color">#6200EE</color>
     <color name="primary_dark">#3700B3</color>
     <color name="primary_light">#BB86FC</color>
@@ -7,4 +8,22 @@
     <color name="black">#000000</color>
     <color name="gray">#757575</color>
     <color name="error">#B00020</color>
+=======
+<<<<<<< HEAD
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+=======
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="mint_primary">#00C28A</color> <!-- Xanh ngọc -->
+    <color name="mint_soft_button">#E6FFF7</color> <!-- Nút nhẹ -->
+    <color name="mint_background">#FFFFFF</color> <!-- Nền -->
+    <color name="mint_text">#2C2C2C</color> <!-- Chữ đậm -->
+>>>>>>> 61caeb2 (Initial commit)
+>>>>>>> fbb9dc455cf3bbd08988e26974a341b03bd6cfbd
 </resources>
