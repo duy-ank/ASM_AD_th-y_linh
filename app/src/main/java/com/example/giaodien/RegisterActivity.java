@@ -1,4 +1,4 @@
-package com.example.dangnhap;
+package com.example.giaodien;
 
 
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dangnhap.database.UserDAO;
+import com.example.giaodien.database.UserDAO;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;

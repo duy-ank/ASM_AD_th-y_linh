@@ -40,11 +40,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation ("androidx.appcompat:appcompat:1.6.1")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation ("androidx.viewpager2:viewpager2:1.0.0")
-    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    // BCrypt
+    implementation("at.favre.lib:bcrypt:0.9.0")
 }
