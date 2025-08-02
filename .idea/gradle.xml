@@ -15,5 +15,9 @@
         </option>
       </GradleProjectSettings>
     </option>
+<<<<<<< HEAD
+=======
+    <option name="parallelModelFetch" value="true" />
+>>>>>>> 61caeb2 (Initial commit)
   </component>
 </project>

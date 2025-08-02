@@ -9,7 +9,10 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+<<<<<<< HEAD
         maven(url = "https://jitpack.io")
+=======
+>>>>>>> 61caeb2 (Initial commit)
     }
 }
 dependencyResolutionManagement {
@@ -17,10 +20,17 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+<<<<<<< HEAD
         maven(url = "https://jitpack.io")
     }
 }
 
 rootProject.name = "giaodien"
+=======
+    }
+}
+
+rootProject.name = "Expense Management"
+>>>>>>> 61caeb2 (Initial commit)
 include(":app")
  
