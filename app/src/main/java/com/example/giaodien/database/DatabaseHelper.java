@@ -316,10 +316,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getUserInfo(String username) {
+    public Cursor getUserInfoByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM users WHERE username = ?";
-        return db.rawQuery(query, new String[]{username});
+        String query = "SELECT full_name, email FROM " + TABLE_USERS + " WHERE email = ?";
+        return db.rawQuery(query, new String[]{email});
     }
-
 }

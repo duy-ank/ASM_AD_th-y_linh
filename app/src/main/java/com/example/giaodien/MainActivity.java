@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.pieChart);
 
         TextView tvUserAvatar = findViewById(R.id.tvUserAvatar);
-        tvUserAvatar.setOnClickListener(v -> showUserInfoDialog());
+        tvUserAvatar.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+            startActivity(intent);
+        });
     }
 
 
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showUserInfoDialog() {
         Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.ialog_user_info); // Kiểm tra kỹ tên file là 'dialog_user_info.xml' nhé
+        dialog.setContentView(R.layout.dialog_user_info); // Kiểm tra kỹ tên file là 'dialog_user_info.xml' nhé
 
         ImageView imgAvatar = dialog.findViewById(R.id.imgAvatar);
         TextView tvName = dialog.findViewById(R.id.tvName);
@@ -128,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
         String username = preferences.getString("username", ""); // mặc định là rỗng nếu chưa có
 
-        Cursor cursor = dbHelper.getUserInfo(username);
+        Cursor cursor = dbHelper.getUserInfoByEmail(username);
+
         if (cursor != null && cursor.moveToFirst()) {
             String name  = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
             String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
