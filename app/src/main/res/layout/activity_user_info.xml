@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/bg_dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Avatar -->
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_account"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Họ tên -->
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên người dùng"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#00B89C"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@example.com"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="24dp" />
+
+        <!-- SECTION: Tài khoản -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TÀI KHOẢN"
+            android:textStyle="bold"
+            android:textColor="#999999"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Liên kết tài khoản -->
+        <LinearLayout
+            android:id="@+id/btnLinkAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/bg_row_white"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_account"
+                app:tint="#00B89C" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Liên kết tài khoản"
+                android:layout_marginStart="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_google"
+                android:contentDescription="Google icon" />
+        </LinearLayout>
+
+        <!-- Mã người dùng -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/bg_row_white"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_account"
+                app:tint="#00B89C" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mã người dùng"
+                android:layout_marginStart="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvUserCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LV21BS"
+                android:textColor="#00B89C"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp" />
+
+            <ImageView
+                android:id="@+id/btnCopy"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_copy"
+                app:tint="#00B89C" />
+        </LinearLayout>
+
+        <!-- Đăng xuất -->
+        <LinearLayout
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/bg_row_white"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_logout"
+                app:tint="#00B89C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng xuất"
+                android:layout_marginStart="12dp"
+                android:textColor="#333333"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- SECTION: Dữ liệu người dùng -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DỮ LIỆU NGƯỜI DÙNG"
+            android:textStyle="bold"
+            android:textColor="#999999"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Xóa dữ liệu -->
+        <LinearLayout
+            android:id="@+id/btnClearData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/bg_row_white"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_refresh"
+                app:tint="#00B89C" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xóa dữ liệu, làm mới ứng dụng"
+                android:layout_marginStart="12dp"
+                android:textColor="#00B89C"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Xóa tài khoản -->
+        <LinearLayout
+            android:id="@+id/btnDeleteAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:background="@drawable/bg_row_white">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                app:tint="#F44336" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xóa tài khoản, ngừng sử dụng"
+                android:layout_marginStart="12dp"
+                android:textColor="#F44336"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

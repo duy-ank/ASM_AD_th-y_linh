@@ -352,4 +352,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rowsAffected;
     }
+    public int deleteUserByEmail(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsAffected = db.delete(
+                TABLE_USERS,
+                COLUMN_EMAIL + " = ?",
+                new String[]{email}
+        );
+        db.close();
+        return rowsAffected;
+    }
 }

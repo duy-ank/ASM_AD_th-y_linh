@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnHistory;
     private ViewPager2 viewPager;
     private PieChart pieChart;
+    private TextView tvUserAvatar;
     private LineChart dailySpendingChart;
 
     // Khai báo các đối tượng cần thiết
@@ -127,15 +128,16 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         pieChart = findViewById(R.id.pieChart);
         dailySpendingChart = findViewById(R.id.dailySpendingChart);
+        tvUserAvatar = findViewById(R.id.tvUserAvatar);
 
         TextView tvDate = findViewById(R.id.tvDate);
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd/MM/yyyy", new Locale("vi", "VN"));
         String currentDate = sdf.format(new Date());
         tvDate.setText(currentDate);
 
-        TextView tvUserAvatar = findViewById(R.id.tvUserAvatar);
+        // Sửa: chuyển hướng đến AccountActivity thay vì mở dialog
         tvUserAvatar.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+            Intent intent = new Intent(MainActivity.this, AccountActivity.class);
             startActivity(intent);
         });
     }
@@ -281,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
 
         dailySpendingChart.invalidate();
     }
+
 
     /**
      * Adapter cho ViewPager2, quản lý các Fragment của các tab.

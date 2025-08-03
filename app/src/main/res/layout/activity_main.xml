@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,6 +8,7 @@
     android:background="#EDF8F5"
     tools:context=".MainActivity">
 
+    <!-- Header Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"

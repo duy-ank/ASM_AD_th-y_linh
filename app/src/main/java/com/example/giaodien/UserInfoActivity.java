@@ -18,6 +18,7 @@ public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_user_info); // dùng lại layout dialog_user_info
+        setContentView(R.layout.activity_user_info); // dùng lại layout dialog_user_info
 
         ImageView imgAvatar = findViewById(R.id.imgAvatar);
         TextView tvName = findViewById(R.id.tvName);

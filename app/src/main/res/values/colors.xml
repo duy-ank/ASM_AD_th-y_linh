@@ -19,4 +19,6 @@
     <color name="error">#B00020</color>
     <color name="red">#FF0000</color>
     <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryt">#00B89C</color> <!-- xanh ngọc -->
+    <color name="bg_pressed">#EEEEEE</color>
 </resources>
