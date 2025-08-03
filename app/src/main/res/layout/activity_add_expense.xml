@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mint_background"
+    android:padding="16dp"
+    tools:context=".AddExpenseActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm khoản chi"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/mint_text"
+            android:gravity="center"
+            android:padding="16dp" />
+
+        <!-- Nhập số tiền -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nhập số tiền"
+            android:textColor="@color/mint_text"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:hint="Ví dụ: 100,000"
+            android:inputType="numberDecimal"
+            android:textColor="#000000"
+            android:background="@drawable/edittext_border"
+            android:importantForAutofill="yes"
+            android:autofillHints="amount"/>
+
+        <!-- Chọn danh mục -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn danh mục"
+            android:textColor="@color/mint_text"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+
+        <Spinner
+            android:id="@+id/spCategory"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:background="@drawable/spinner_border"/>
+
+        <!-- Mô tả -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mô tả"
+            android:textColor="@color/mint_text"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="@string/description_hint"
+            android:inputType="textMultiLine"
+            android:textColor="#000000"
+            android:background="@drawable/edittext_border"
+            android:importantForAutofill="yes"
+            android:autofillHints="description"/>
+
+        <!-- Phương thức thanh toán -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phương thức thanh toán"
+            android:textColor="@color/mint_text"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+
+        <Spinner
+            android:id="@+id/spPaymentMethod"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:background="@drawable/spinner_border"/>
+
+        <!-- Nút Lưu -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:text="Lưu"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/mint_primary"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+</ScrollView>
