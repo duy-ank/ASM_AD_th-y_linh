@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
 import com.example.giaodien.model.User;
@@ -15,8 +16,14 @@ public class UserDAO {
     private final DatabaseHelper dbHelper;
     private static final int BCRYPT_COST = 12;
 
+    // Constructor cũ: Dùng để tương thích ngược nếu cần
     public UserDAO(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        this.dbHelper = new DatabaseHelper(context);
+    }
+
+    // Constructor mới: Dùng để tuân thủ Dependency Injection (khuyến nghị)
+    public UserDAO(DatabaseHelper dbHelper) {
+        this.dbHelper = dbHelper;
     }
 
     public long registerUser(String email, String password, String fullName) {
@@ -32,7 +39,7 @@ public class UserDAO {
         long result = -1;
         try {
             result = db.insertOrThrow(DatabaseHelper.TABLE_USERS, null, values);
-        } catch (Exception e) {
+        } catch (SQLiteException e) {
             Log.e(TAG, "Error registering user", e);
         } finally {
             db.close();
@@ -44,7 +51,7 @@ public class UserDAO {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         User user = null;
 
-        Cursor cursor = db.query(
+        try (Cursor cursor = db.query(
                 DatabaseHelper.TABLE_USERS,
                 new String[]{
                         DatabaseHelper.COLUMN_USER_ID,
@@ -55,26 +62,26 @@ public class UserDAO {
                 DatabaseHelper.COLUMN_EMAIL + " = ?",
                 new String[]{email},
                 null, null, null
-        );
+        )) {
+            if (cursor.moveToFirst()) {
+                String storedHash = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_PASSWORD_HASH));
+                BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), storedHash);
 
-        if (cursor.moveToFirst()) {
+                if (result.verified) {
+                    user = new User();
+                    user.setId(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_USER_ID)));
+                    user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)));
+                    user.setFullName(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FULL_NAME)));
 
-            String storedHash = cursor.getString(2);
-            BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), storedHash);
-
-            if (result.verified) {
-                user = new User();
-                user.setId(cursor.getLong(0));
-                user.setEmail(cursor.getString(1));
-                user.setFullName(cursor.getString(3));
-
-                // Update last login time
-                updateLastLogin(db, email);
+                    // Cập nhật last login time, tái sử dụng kết nối database
+                    updateLastLogin(db, email);
+                }
             }
+        } catch (SQLiteException e) {
+            Log.e(TAG, "Error logging in user", e);
+        } finally {
+            db.close();
         }
-
-        cursor.close();
-        db.close();
         return user;
     }
 
@@ -92,17 +99,50 @@ public class UserDAO {
 
     public boolean isEmailExists(String email) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(
+        boolean exists = false;
+        try (Cursor cursor = db.query(
                 DatabaseHelper.TABLE_USERS,
                 new String[]{DatabaseHelper.COLUMN_USER_ID},
                 DatabaseHelper.COLUMN_EMAIL + " = ?",
                 new String[]{email},
                 null, null, null
-        );
-
-        boolean exists = cursor.getCount() > 0;
-        cursor.close();
-        db.close();
+        )) {
+            exists = cursor.getCount() > 0;
+        } catch (SQLiteException e) {
+            Log.e(TAG, "Error checking for existing email", e);
+        } finally {
+            db.close();
+        }
         return exists;
+    }
+
+    // Phương thức mới để lấy thông tin người dùng bằng email
+    public User getUserInfoByEmail(String email) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        User user = null;
+        String[] columns = {
+                DatabaseHelper.COLUMN_USER_ID,
+                DatabaseHelper.COLUMN_EMAIL,
+                DatabaseHelper.COLUMN_FULL_NAME
+        };
+        try (Cursor cursor = db.query(
+                DatabaseHelper.TABLE_USERS,
+                columns,
+                DatabaseHelper.COLUMN_EMAIL + " = ?",
+                new String[]{email},
+                null, null, null)) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                user = new User();
+                user.setId(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_USER_ID)));
+                user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_EMAIL)));
+                user.setFullName(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_FULL_NAME)));
+            }
+        } catch (SQLiteException e) {
+            Log.e(TAG, "Error getting user info", e);
+        } finally {
+            db.close();
+        }
+        return user;
     }
 }

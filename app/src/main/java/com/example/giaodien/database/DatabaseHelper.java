@@ -153,6 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PAYMENT_METHOD, expense.getPaymentMethod());
         values.put(COLUMN_DESCRIPTION, expense.getDescription());
         values.put(COLUMN_DATE, expense.getTimestamp());
+        values.put(COLUMN_USER_FK, expense.getUserId());
 
         long result = db.insert(TABLE_EXPENSES, null, values);
         db.close();
@@ -169,7 +170,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CATEGORY,
                 COLUMN_PAYMENT_METHOD,
                 COLUMN_DESCRIPTION,
-                COLUMN_DATE
+                COLUMN_DATE,
+                COLUMN_USER_FK // Thêm cột userId
         };
 
         try (Cursor cursor = db.query(
@@ -183,11 +185,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             while (cursor.moveToNext()) {
                 Expense expense = new Expense(
+                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_EXPENSE_ID)),
                         cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PAYMENT_METHOD)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)),
-                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_USER_FK)) // Lấy userId
                 );
                 expenses.add(expense);
             }
@@ -209,7 +213,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CATEGORY,
                 COLUMN_PAYMENT_METHOD,
                 COLUMN_DESCRIPTION,
-                COLUMN_DATE
+                COLUMN_DATE,
+                COLUMN_USER_FK // Thêm cột userId
         };
 
         try (Cursor cursor = db.query(
@@ -225,11 +230,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 do {
                     Expense expense = new Expense(
+                            cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_EXPENSE_ID)),
                             cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT)),
                             cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY)),
                             cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PAYMENT_METHOD)),
                             cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)),
-                            cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+                            cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                            cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_USER_FK)) // Lấy userId
                     );
                     expenses.add(expense);
                 } while (cursor.moveToNext());
@@ -251,7 +258,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_CATEGORY,
                 COLUMN_PAYMENT_METHOD,
                 COLUMN_DESCRIPTION,
-                COLUMN_DATE
+                COLUMN_DATE,
+                COLUMN_USER_FK // Thêm cột userId
         };
 
         try (Cursor cursor = db.query(
@@ -264,11 +272,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             while (cursor.moveToNext()) {
                 Expense expense = new Expense(
+                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_EXPENSE_ID)),
                         cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_AMOUNT)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PAYMENT_METHOD)),
                         cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)),
-                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE))
+                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_DATE)),
+                        cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_USER_FK)) // Lấy userId
                 );
                 expenses.add(expense);
             }
@@ -318,7 +328,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getUserInfoByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT full_name, email FROM " + TABLE_USERS + " WHERE email = ?";
+        String query = "SELECT " + COLUMN_USER_ID + ", " + COLUMN_FULL_NAME + ", " + COLUMN_EMAIL +
+                " FROM " + TABLE_USERS + " WHERE " + COLUMN_EMAIL + " = ?";
         return db.rawQuery(query, new String[]{email});
+    }
+
+    public int updateExpense(Expense expense) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_AMOUNT, expense.getAmount());
+        values.put(COLUMN_CATEGORY, expense.getCategory());
+        values.put(COLUMN_PAYMENT_METHOD, expense.getPaymentMethod());
+        values.put(COLUMN_DESCRIPTION, expense.getDescription());
+        values.put(COLUMN_DATE, expense.getTimestamp());
+        values.put(COLUMN_USER_FK, expense.getUserId()); // Thêm dòng này
+
+        int rowsAffected = db.update(
+                TABLE_EXPENSES,
+                values,
+                COLUMN_EXPENSE_ID + " = ?",
+                new String[]{String.valueOf(expense.getId())}
+        );
+        db.close();
+        return rowsAffected;
     }
 }

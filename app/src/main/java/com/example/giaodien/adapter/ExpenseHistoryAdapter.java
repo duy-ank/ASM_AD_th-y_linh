@@ -1,7 +1,5 @@
 package com.example.giaodien.adapter;
 
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +15,31 @@ import java.util.List;
 import java.util.Locale;
 
 public class ExpenseHistoryAdapter extends RecyclerView.Adapter<ExpenseHistoryAdapter.ExpenseViewHolder> {
-    private final List<Expense> expenses;
+    private List<Expense> expenses;
     private final SimpleDateFormat dateFormat;
     private final NumberFormat currencyFormat;
+    private final OnItemLongClickListener longClickListener;
 
-    public ExpenseHistoryAdapter(List<Expense> expenses) {
+    public ExpenseHistoryAdapter(List<Expense> expenses, OnItemLongClickListener longClickListener) {
         this.expenses = expenses;
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         this.currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        this.longClickListener = longClickListener;
+    }
+
+    public void setExpenses(List<Expense> newExpenses) {
+        this.expenses = newExpenses;
+        notifyDataSetChanged();
+    }
+
+    public void removeExpense(int position) {
+        expenses.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void updateExpense(Expense updatedExpense, int position) {
+        expenses.set(position, updatedExpense);
+        notifyItemChanged(position);
     }
 
     @NonNull
@@ -37,7 +52,15 @@ public class ExpenseHistoryAdapter extends RecyclerView.Adapter<ExpenseHistoryAd
 
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
-        holder.bind(expenses.get(position));
+        final Expense expense = expenses.get(position);
+        holder.bind(expense);
+
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onItemLongClick(expense, position);
+            }
+            return true;
+        });
     }
 
     @Override
@@ -65,9 +88,13 @@ public class ExpenseHistoryAdapter extends RecyclerView.Adapter<ExpenseHistoryAd
         public void bind(Expense expense) {
             tvAmount.setText(currencyFormat.format(expense.getAmount()));
             tvCategory.setText(expense.getCategory());
-            tvDate.setText(dateFormat.format(new Date(expense.getTimestamp())));
+            tvDate.setText(dateFormat.format(new Date(expense.getTimestamp() * 1000L)));
             tvPaymentMethod.setText(expense.getPaymentMethod());
             tvDescription.setText(expense.getDescription());
         }
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(Expense expense, int position);
     }
 }
