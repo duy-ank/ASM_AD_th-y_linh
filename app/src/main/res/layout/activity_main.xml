@@ -1,0 +1,283 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDF8F5"
+    tools:context=".MainActivity">
+
+    <!-- Header Layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lịch sử"
+            android:textColor="#00B89C"
+            app:backgroundTint="#EDF8F5"
+            app:cornerRadius="16dp"
+            app:strokeColor="#00B89C"
+            app:strokeWidth="1dp"
+            app:layout_constraintStart_toEndOf="@id/tvDate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="16dp"/>
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hôm nay, 30/07/2025, 21:25"
+            android:textColor="#333333"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvUserAvatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/circle_background"
+            android:gravity="center"
+            android:text="TN"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:tabIndicatorColor="#00B89C"
+        app:tabSelectedTextColor="#00B89C"
+        app:tabTextColor="#666666"
+        app:tabMode="fixed"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiêu" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thu nhập" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mượn nợ" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tài sản" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:layout_constraintBottom_toTopOf="@+id/spendingCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/spendingCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₫0"
+                android:textSize="18sp"
+                android:textColor="#00B89C"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCardSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Bạn chi tiêu đúng kế hoạch"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardTitle" />
+
+            <TextView
+                android:id="@+id/tvPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kế hoạch"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_marginTop="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardSubtitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₫100,000,000"
+                android:textSize="20sp"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvCardSubtitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTotalBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng số dư"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvBalance"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSurplus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₫100,000,000"
+                android:textSize="18sp"
+                android:textColor="#FFC107"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalBalance"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <ImageView
+                android:id="@+id/arrowIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBalance" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/emptyStateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddTransaction">
+
+        <ImageView
+            android:id="@+id/imgWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_wallet"
+            app:layout_constraintBottom_toTopOf="@+id/tvEmptyState"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/imgBee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-40dp"
+            android:layout_marginBottom="-20dp"
+            android:src="@drawable/ic_bee"
+            app:layout_constraintBottom_toTopOf="@+id/imgWallet"
+            app:layout_constraintEnd_toStartOf="@+id/imgWallet" />
+
+        <TextView
+            android:id="@+id/tvEmptyState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Tháng này (07/2025) bạn chưa có ghi chép nào."
+            android:textColor="#666666"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgWallet" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm khoản chi"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#00B89C"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:cornerRadius="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:itemIconSize="24dp"
+        app:itemIconTint="#666666"
+        app:itemTextColor="#666666"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>
